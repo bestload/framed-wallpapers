@@ -1,75 +1,77 @@
 # 🖼️ Framed Wallpapers
 
+**English** | [Русский](README.ru.md)
+
 [![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![Pillow](https://img.shields.io/badge/Pillow-latest-green)](https://pypi.org/project/Pillow/)
-[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows*-lightgrey)](#примечания)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](#лицензия)
+[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows*-lightgrey)](#notes)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](#license)
 
-> Набор скриптов для создания стильных обоев с деревянной рамкой и подписями из CSV, а также утилита для определения разрешения экрана.
-
----
-
-## ✨ Возможности
-
-|   | Функция | Описание |
-|---|---------|----------|
-| 🎨 | **Генерация обоев** | Масштабирование с сохранением пропорций, размещение на чёрном холсте, наложение декоративной рамки и текстовой подписи |
-| 📝 | **Пакетная обработка** | Массовая обработка изображений с подписями из CSV-файла |
-| 🖥️ | **Определение разрешения** | Кроссплатформенное определение разрешения всех подключённых мониторов |
+> Scripts for creating styled wallpapers with a wooden frame and captions from CSV, plus a utility to detect screen resolution.
 
 ---
 
-## 📁 Структура проекта
+## ✨ Features
+
+|   | Feature | Description |
+|---|---------|--------------|
+| 🎨 | **Wallpaper generation** | Scale preserving aspect ratio, place on black canvas, add decorative frame and text caption |
+| 📝 | **Batch processing** | Process multiple images with captions from a CSV file |
+| 🖥️ | **Resolution detection** | Cross-platform detection of all connected monitors' resolution |
+
+---
+
+## 📁 Project structure
 
 ```
 framed-wallpapers/
-├── 🐍 image_text.py # Генерация обоев: рамка + подписи
-├── 🐍 resolution.py # Утилита определения разрешения экрана
-├── 📄 captions.csv # Подписи к изображениям
-├── 📄 example_captions.csv # Пример формата подписей
-├── 📂 input/ # Исходные изображения (.jpg, .jpeg)
-├── 📂 output/ # Готовые обои (создаётся автоматически)
-├── 📂 examples/ # Примеры: до и после обработки
+├── 🐍 image_text.py      # Wallpaper generation: frame + captions
+├── 🐍 resolution.py      # Screen resolution utility
+├── 📄 captions.csv       # Image captions
+├── 📄 example_captions.csv  # Example caption format
+├── 📂 input/             # Source images (.jpg, .jpeg)
+├── 📂 output/            # Generated wallpapers (created automatically)
+├── 📂 examples/          # Before/after samples
 └── 📄 README.md
 ```
 
 ---
 
-## 🔧 Требования
+## 🔧 Requirements
 
 - **Python 3.6+**
-- [Pillow](https://pypi.org/project/Pillow/) — обработка изображений
-- [screeninfo](https://pypi.org/project/screeninfo/) — определение разрешения *(опционально, только для `resolution.py`)*
+- [Pillow](https://pypi.org/project/Pillow/) — image processing
+- [screeninfo](https://pypi.org/project/screeninfo/) — resolution detection *(optional, only for `resolution.py`)*
 
 ---
 
-## 🚀 Быстрый старт
+## 🚀 Quick start
 
-### Установка
+### Installation
 
 ```bash
-# Клонируйте репозиторий
+# Clone the repository
 git clone https://github.com/<username>/framed-wallpapers.git
 cd framed-wallpapers
 
-# Создайте виртуальное окружение
+# Create virtual environment
 python -m venv venv
 source venv/bin/activate        # Linux / macOS
 # venv\Scripts\activate         # Windows
 
-# Установите зависимости
+# Install dependencies
 pip install Pillow screeninfo
 ```
 
-### Генерация обоев
+### Wallpaper generation
 
-| До обработки | После обработки |
-|--------------|-----------------|
-| ![Исходное изображение](examples/001.jpeg) | ![Обои с рамкой и подписью](examples/processed_001.jpeg) |
+| Before | After |
+|--------|-------|
+| ![Source image](examples/001.jpeg) | ![Wallpaper with frame and caption](examples/processed_001.jpeg) |
 
-1. Поместите исходные изображения (`.jpg`, `.jpeg`) в папку **`input/`**.
+1. Put your source images (`.jpg`, `.jpeg`) in the **`input/`** folder.
 
-2. Заполните файл **`captions.csv`** — одна строка на изображение, порядок строк = алфавитный порядок файлов. Пример (**`example_captions.csv`**):
+2. Fill in **`captions.csv`** — one row per image, row order = alphabetical order of files. Example (**`example_captions.csv`**):
 
    ```csv
    caption
@@ -78,45 +80,45 @@ pip install Pillow screeninfo
    "РЕПИН Илья - Пахарь (Л. Н. Толстой на пашне)"
    ```
 
-3. Запустите скрипт:
+3. Run the script:
 
    ```bash
    python image_text.py
    ```
 
-4. Готовые обои появятся в **`output/`** с префиксом `processed_` 🎉
+4. Wallpapers will appear in **`output/`** with the `processed_` prefix 🎉
 
-### ⚙️ Параметры
+### ⚙️ Parameters
 
-Настраиваются в блоке `if __name__ == "__main__"` файла `image_text.py`:
+Configured in the `if __name__ == "__main__"` block of `image_text.py`:
 
-| Параметр      | По умолчанию   | Описание |
-|---------------|----------------|----------|
-| `input_dir`   | `"input"`      | Папка с исходными изображениями |
-| `csv_path`    | `"captions.csv"` | Путь к файлу с подписями |
-| `output_dir`  | `"output"`     | Папка для результатов |
-| `target_size` | `(1920, 1080)` | Размер холста (Ш × В) |
-| `font_size`   | `30`           | Размер шрифта подписи |
-| `padding`     | `10`           | Отступ от краёв в пикселях |
-| `scale_factor`| `0.8`          | Масштаб изображения относительно доступной области |
+| Parameter     | Default        | Description |
+|---------------|----------------|-------------|
+| `input_dir`   | `"input"`      | Folder with source images |
+| `csv_path`    | `"captions.csv"` | Path to captions file |
+| `output_dir`  | `"output"`     | Output folder |
+| `target_size` | `(1920, 1080)` | Canvas size (W × H) |
+| `font_size`   | `30`           | Caption font size |
+| `padding`     | `10`           | Edge padding in pixels |
+| `scale_factor`| `0.8`         | Image scale relative to available area |
 
-Шрифты: скрипт автоматически ищет Liberation Sans или DejaVu Sans по стандартным путям Linux. Если шрифт не найден — используется встроенный шрифт PIL.
+Fonts: the script looks for Liberation Sans or DejaVu Sans on standard Linux paths. If not found, PIL's default font is used.
 
-### 🖥️ Определение разрешения экрана
+### 🖥️ Screen resolution
 
 ```bash
 python resolution.py
 ```
 
-Скрипт последовательно пробует три метода:
+The script tries three methods in order:
 
-| # | Метод       | Платформа           | Что определяет |
-|---|-------------|---------------------|----------------|
-| 1 | screeninfo  | Кроссплатформенно   | Все подключённые мониторы |
-| 2 | xrandr      | X11                 | Активные режимы (помечены *) |
-| 3 | xdpyinfo    | X11                 | Разрешение основного дисплея |
+| # | Method      | Platform         | What it reports |
+|---|-------------|------------------|-----------------|
+| 1 | screeninfo  | Cross-platform   | All connected monitors |
+| 2 | xrandr      | X11              | Active modes (marked with *) |
+| 3 | xdpyinfo    | X11              | Primary display resolution |
 
-**Пример вывода:**
+**Example output:**
 
 ```
 Получение разрешения экрана...
@@ -132,3 +134,13 @@ python resolution.py
 Метод 3: xdpyinfo
 Монитор 1: 3200x1239
 ```
+
+---
+
+## Notes
+
+On Wayland, `xrandr` and `xdpyinfo` are typically not available; only the screeninfo method is used. If the number of captions in CSV does not match the number of images, the script prints a warning and uses a placeholder for missing captions.
+
+## License
+
+MIT (or specify your license).
