@@ -134,13 +134,3 @@ The script tries three methods in order:
 Метод 3: xdpyinfo
 Монитор 1: 3200x1239
 ```
-
----
-
-## Notes
-
-On Wayland, `xrandr` and `xdpyinfo` are typically not available; only the screeninfo method is used. If the number of captions in CSV does not match the number of images, the script prints a warning and uses a placeholder for missing captions.
-
-## License
-
-MIT (or specify your license).
